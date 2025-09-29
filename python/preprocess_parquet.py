@@ -2,6 +2,13 @@ import sys
 import pandas as pd
 from pathlib import Path
 
+def replace_bogus_huc_with_label(huc10):
+
+    value=huc10
+    if huc10=='0000000001':
+        value="State_of_Minnesota"
+    return value
+
 def read_and_add_diff_column(parquet_path: str, verbose: bool = True) -> pd.DataFrame:
     df = pd.read_parquet(parquet_path)
 
@@ -89,6 +96,9 @@ def read_and_add_diff_column(parquet_path: str, verbose: bool = True) -> pd.Data
 
     # Combine with future rows that have diffs
     final_df = pd.concat([all_diffs, historical_rows], ignore_index=True)
+
+    # pad HUC numbers with leading zeros
+    final_df['huc10'] = [replace_bogus_huc_with_label(s.zfill(10)) for s in final_df.zone]
 
     return final_df
 
