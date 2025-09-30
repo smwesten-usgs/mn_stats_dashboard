@@ -59,23 +59,8 @@ def mean_values_for_pivot_table(df):
     # Compute mean of numeric columns
     mean_values = filtered_non_prism_df.select_dtypes(include='number').mean().round(2)
 
-    n = 0
-    for val in mean_values:
-        n+=1
-        print(f"{n}) {val}")
-    
-    #df = df.reset_index()
-
-    print("__________________________________")
-    print(['AVERAGE OF MODELS'] + mean_values.tolist())
-    print("__________________________________")
-    print(filtered_non_prism_df)
-    print("__________________________________")
-    print(filtered_non_prism_df.columns)
-
     # Create a new row with label 'mean' and the rest as the computed means
     mean_row = pd.DataFrame([['AVERAGE OF MODELS'] + mean_values.tolist()], columns=filtered_non_prism_df.columns)
-    #print(mean_row)
     # Concatenate the mean row with the original DataFrame
     df_with_mean = pd.concat([filtered_non_prism_df, mean_row, filtered_prism_df], ignore_index=True)
     return df_with_mean
@@ -218,7 +203,6 @@ def update_plot(filtered_df, summary_basetype, time_period, huc10, swb_variable_
 
     bars = hv.Bars(filtered_df, kdims=['weather_data_name','scenario_name'], vdims=[vdims]).opts(
         ylim=(ymin, ymax),
-        framewise=True,
         title=title_txt,
         xlabel='Model Name',
         ylabel=ylabel,
@@ -234,9 +218,9 @@ def update_plot(filtered_df, summary_basetype, time_period, huc10, swb_variable_
         xrotation=45
     )
 
-    # return bars.redim.range(y=(ymin, ymax))
-    # return bars.redim(y=hv.Dimension('y', range=(ymin, ymax)))
-    return bars.redim.range(value=(ymin, ymax))
+    bars.opts(framewise=True)
+
+    return bars
 
 # Create widgets for filtering
 huc10_selector = pn.widgets.Select(name='HUC 10', options=list(df['huc10'].unique()), value=None)

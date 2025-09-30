@@ -20,7 +20,7 @@ dependencies:
   - aws-sdk-cpp=1.11.510=hd13e2d4_11
   - bleach=6.2.0=pyh29332c3_4
   - blosc=1.21.6=hfd34d9b_1
-  - bokeh=3.7.3=pyhd8ed1ab_0
+  - bokeh=3.8.0=pyhd8ed1ab_0
   - branca=0.8.1=pyhd8ed1ab_0
   - brotli=1.1.0=h2466b09_3
   - brotli-bin=1.1.0=h2466b09_3
@@ -139,11 +139,11 @@ dependencies:
   - networkx=3.4.2=pyh267e887_2
   - numpy=2.3.2=py312ha72d056_2
   - openjpeg=2.5.3=h4d64b90_0
-  - openssl=3.5.2=h725018a_0
+  - openssl=3.5.3=h725018a_1
   - orc=2.1.2=h35764e3_0
   - packaging=25.0=pyh29332c3_1
   - pandas=2.3.2=py312hc128f0a_0
-  - panel=1.7.5=pyhd8ed1ab_0
+  - panel=1.8.1=pyhd8ed1ab_0
   - param=2.2.1=pyhd8ed1ab_0
   - parso=0.8.5=pyhcf101f3_0
   - pcre2=10.45=h99c9b8b_0
