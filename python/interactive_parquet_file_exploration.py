@@ -177,7 +177,8 @@ def update_plot(filtered_df, summary_basetype, time_period, huc10, swb_variable_
         case 'mean_growing-season':
             title_object_txt = f"mean growing season"
         case 'mean_monthly':
-            title_object_txt = f"mean monthly ({month})"
+            month_txt = get_monthname(month)
+            title_object_txt = f"mean monthly ({month_txt})"
 
     if diff_button:
         vdims='diff'
